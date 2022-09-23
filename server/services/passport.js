@@ -3,7 +3,22 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
 
 const keys = require("../config/keys");
-const User = mongoose.model("users"); //pulls the model/schema out of mongoose
+const User = mongoose.model("users"); //pulls the schema out of mongoose
+
+//turning an user into an id for mongodb storage???
+passport.serializeUser((user, done) => {
+  console.log("Serializing user: " + user);
+  done(null, user.id); //this id is the mongoDB generated _id value, not tied directly to google
+});
+
+//turn an id into a user
+passport.deserializeUser((id, done) => {
+  console.log("Deserializing user with id: " + id);
+  User.findById(id).then((user) => {
+    console.log("User found " + user);
+    done(null, user); //stores user as a cookie I think?
+  });
+});
 
 const gOptions = {
   clientID: keys.googleClientID,
