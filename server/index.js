@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
+require("./models/User");
 require("./services/passport"); //doesn't need to be assigned to anything since the file isn't returning anything. Just need to attach it to this file for usage
-const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -11,8 +11,9 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(keys.mongoURI);
 
 /////Attach routes to express app/////
-authRoutes(app); //could also get rid of authroutes const and condense into:
-/* require("./routes/authRoutes")(app) */
+// const authRoutes = require("./routes/authRoutes");
+// authRoutes(app); //these two lines are equivalent to:
+require("./routes/authRoutes")(app);
 
 /////Spin up app on PORT/////
 app.listen(PORT);
