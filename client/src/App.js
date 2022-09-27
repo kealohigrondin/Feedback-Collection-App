@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
@@ -16,6 +16,9 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+        </a>
+        <a href="/auth/google">
+          Click here to sign in with Google
         </a>
       </header>
     </div>
