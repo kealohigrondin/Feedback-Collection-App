@@ -24,6 +24,7 @@ const gOptions = {
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,
   callbackURL: "/auth/google/callback", //tells it where to send the user back to after authing them
+  proxy: true //enables https rather than http
 };
 
 const gStrategy = new GoogleStrategy(
