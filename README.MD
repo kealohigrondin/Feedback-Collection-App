@@ -10,9 +10,9 @@ react-final-form
 
 # Express tools used:
 
-mongoose
-passport (and passport for google oauth2.0)
-nodemon
+- mongoose
+- passport (and passport for google oauth2.0)
+- nodemon
 
 # How do I get this running?
 
