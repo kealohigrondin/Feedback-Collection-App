@@ -24,25 +24,26 @@ const gOptions = {
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,
   callbackURL: "/auth/google/callback", //tells it where to send the user back to after authing them
-  proxy: true //enables https rather than http
+  proxy: true, //enables https rather than http
 };
 
+// alternate way to call async functions that return promises instead of appending the
+//   async function call with then(res => {})
 const gStrategy = new GoogleStrategy(
   gOptions,
-  (accessToken, refreshToken, profile, done) => {
+  async (accessToken, refreshToken, profile, done) => {
     //callback function that runs after auth/google/callback gets a result from google
     //check that the user doesn't exist yet
-    User.findOne({ googleId: profile.id }).then((existingUser) => {
-      if (existingUser) {
-        console.log("USER ALREADY EXISTS");
-        done(null, existingUser); //no error, return with the existing user
-      }
-      //creates a new user and adds to mongodb
-      new User({ googleId: profile.id }).save().then((newUser) => {
-        console.log("NEW USER ADDED:\n ", newUser);
-        done(null, newUser);
-      });
-    });
+    const existingUser = await User.findOne({ googleId: profile.id });
+    if (existingUser) {
+      console.log("USER ALREADY EXISTS");
+      return done(null, existingUser); //no error, return with the existing user
+    }
+    
+    //creates a new user and adds to mongodb
+    const newUser = await new User({ googleId: profile.id }).save();
+    console.log("NEW USER ADDED:\n ", newUser);
+    done(null, newUser);
   }
 );
 passport.use(gStrategy); //tell passport to use this strategy for authentication
