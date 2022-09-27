@@ -24,13 +24,13 @@ nodemon
 4. Inside /server/config, create a file called 'keys.js' (also add this file to .gitignore)
 5. In keys.js, export an object like this with your own values:
    `module.exports = { googleClientID: "google client ID", googleClientSecret: "google client secret", mongoURI: "mongoDB uri" }`
-6. In google developer console, create a new project and within it, a new OAuth consent screen with external user type
+6. In google developer console, create a new project and within it, a new OAuth consent screen with EXTERNAL user type
 7. After creating the Oauth consent screen, go to the 'Credentials' tab and create a new credential with type 'OAuth client ID'
 8. Add http://localhost:5000 as an authorized js origin
 9. Add http://localhost:5000/auth/google/callback as the authorized redirect uri
 10. Save and copy the clientID and clientSecret into keys.js
 11. Create a MongoDB Atlas account at https://www.mongodb.com/atlas/database
-12. Create a new cluster (choose serverless and your closest region) and name it
+12. Create a new project then database/cluster (choose free tier and your closest region) and name it. Then create a username/PW and write it down. Connect with 'my local environment' with IP 0.0.0.0/0
 13. After creating a cluster, click 'connect' and 'connect with your application'
 14. Copy the connection string 'mongodb+srv://...' uri into keys.js with key 'mongoURI' (see above)
 15. In the mongoURI, add your actual mongoDB password
