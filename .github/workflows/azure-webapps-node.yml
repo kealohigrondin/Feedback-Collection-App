@@ -26,7 +26,7 @@ env:
   AZURE_WEBAPP_NAME: feedbackcollectionserver    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './server'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '16.13.2'                # set this to the node version to use
-
+ 
 permissions:
   contents: read
 
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Development'
+      name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
