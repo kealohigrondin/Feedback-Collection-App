@@ -26,7 +26,7 @@ class Nav extends React.Component {
   render() {
     return (
       <div className="ui primary menu" style={{ marginBottom: "2em" }}>
-        <Link to="/" className="item">
+        <Link to={this.props.auth ? '/dashboard' : '/'} className="item">
           Home
         </Link>
         <div className="right menu">{this.renderRightMenu()}</div>
