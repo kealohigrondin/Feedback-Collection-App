@@ -14,12 +14,18 @@ module.exports = (app) => {
 
   //this endpoint is hit when /auth/google successfully auths user and sends them back to server
   //exchanges a code received from google in the /auth/google callback and gets user info
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      //redirect user to another route
+      res.redirect("/dashboard"); // redirect to /dashboard
+    }
+  );
 
-  
   app.get("/auth/logout", (req, res) => {
     req.logout(); //function attached to req by passport (kills cookie in browser)
-    res.send(req.user);
+    res.redirect("/");
   });
 
   //view currently logged in user
