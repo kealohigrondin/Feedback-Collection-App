@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 // import { changeAuth } from "../actions/index";
+import Payments from "./Payments";
 
 class Nav extends React.Component {
   renderRightMenu() {
@@ -17,16 +18,19 @@ class Nav extends React.Component {
         );
       default: //logged in
         return (
-          <a href="/auth/logout" className="item">
-            Sign Out
-          </a>
+          <>
+            <Payments />
+            <a href="/auth/logout" className="item">
+              Sign Out
+            </a>
+          </>
         );
     }
   }
   render() {
     return (
       <div className="ui primary menu" style={{ marginBottom: "2em" }}>
-        <Link to={this.props.auth ? '/dashboard' : '/'} className="item">
+        <Link to={this.props.auth ? "/dashboard" : "/"} className="item">
           Home
         </Link>
         <div className="right menu">{this.renderRightMenu()}</div>

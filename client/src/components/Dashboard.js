@@ -1,5 +1,5 @@
 import React from "react";
-import requireAuth from "./requireAuth";
+// import requireAuth from "./requireAuth";
 
 class Dashboard extends React.Component {
   render() {
