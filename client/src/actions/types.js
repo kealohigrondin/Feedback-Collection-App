@@ -1,1 +1,1 @@
-export const GET_CURRENT_USER = "get current user";
+export const FETCH_USER = "FETCH_USER";

@@ -1,6 +1,8 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
 
+import { handleToken } from "../actions";
 // see
 // https://www.npmjs.com/package/react-stripe-checkout
 // for documentation on react-stripe-checkout
@@ -10,9 +12,10 @@ class Payments extends React.Component {
     // debugger; // insert breakpoint in browser
     return (
       <StripeCheckout
+        name="Feedback Collection App"
         amount={500}
         description="$5 for 5 email credits"
-        token={(token) => console.log("Token: ", token)} //expecting callback function for after stripe comes back with token representing the charge
+        token={(token) => this.props.handleToken(token)} //expecting callback function for after stripe comes back with token representing the charge
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
         <button className="ui button primary">Add Credits</button>
@@ -20,4 +23,4 @@ class Payments extends React.Component {
     );
   }
 }
-export default Payments;
+export default connect(null, { handleToken })(Payments);

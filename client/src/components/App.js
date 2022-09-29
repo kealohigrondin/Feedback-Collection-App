@@ -9,13 +9,13 @@ import Dashboard from "../components/Dashboard";
 // import SignIn from "./auth/SignIn";
 // import SignOut from "./auth/SignOut";
 
-import { getCurrentUser } from "../actions";
+import { fetchUser } from "../actions";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     //see if user is logged in with google already
-    this.props.getCurrentUser();
+    this.props.fetchUser();
   }
 
   render() {
@@ -36,4 +36,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(null, { getCurrentUser })(App);
+export default connect(null, { fetchUser })(App);

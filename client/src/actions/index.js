@@ -1,7 +1,12 @@
 import axios from "axios";
-import { GET_CURRENT_USER } from "./types";
+import { FETCH_USER } from "./types";
 
-export const getCurrentUser = () => async (dispatch) => {
+export const fetchUser = () => async (dispatch) => {
   const res = await axios.get("/auth/current_user");
-  dispatch({ type: GET_CURRENT_USER, payload: res.data });
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const handleToken = () => async (dispatch) => {
+  const res = await axios.post("/api/stripe");
+  dispatch({ type: FETCH_USER, payload: res.data });
 };
