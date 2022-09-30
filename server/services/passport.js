@@ -7,16 +7,14 @@ const User = mongoose.model("users"); //pulls the schema out of mongoose
 
 //turning an user into an id for mongodb storage???
 passport.serializeUser((user, done) => {
-  console.log("Serializing user: " + user);
   done(null, user.id); //this id is the mongoDB generated _id value, not tied directly to google
 });
 
 //turn an id into a user
 passport.deserializeUser((id, done) => {
-  console.log("Deserializing user with id: " + id);
   User.findById(id).then((user) => {
-    console.log("User found " + user);
-    done(null, user); //stores user as a cookie I think?
+    console.log(`User ${id} found`);
+    done(null, user); //goes to next middleware/actual request function with the user
   });
 });
 
@@ -36,13 +34,11 @@ const gStrategy = new GoogleStrategy(
     //check that the user doesn't exist yet
     const existingUser = await User.findOne({ googleId: profile.id });
     if (existingUser) {
-      console.log("USER ALREADY EXISTS");
       return done(null, existingUser); //no error, return with the existing user
     }
-    
+
     //creates a new user and adds to mongodb
     const newUser = await new User({ googleId: profile.id }).save();
-    console.log("NEW USER ADDED:\n ", newUser);
     done(null, newUser);
   }
 );

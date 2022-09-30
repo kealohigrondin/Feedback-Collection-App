@@ -18,6 +18,7 @@ class Payments extends React.Component {
         token={(token) => this.props.handleToken(token)} //expecting callback function for after stripe comes back with token representing the charge
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
+      {/* you can pass a jsx element to StripeCheckout to replace the default html */}
         <button className="ui button primary">Add Credits</button>
       </StripeCheckout>
     );
