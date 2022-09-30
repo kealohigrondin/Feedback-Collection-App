@@ -10,9 +10,9 @@ react-final-form
 
 # Express tools used:
 
-mongoose
-passport (and passport for google oauth2.0)
-nodemon
+- mongoose
+- passport (and passport for google oauth2.0)
+- nodemon
 
 # How do I get this running?
 
@@ -35,6 +35,10 @@ nodemon
 14. Copy the connection string 'mongodb+srv://...' uri into keys.js with key 'mongoURI' (see above)
 15. In the mongoURI, add your actual mongoDB password
 16. In mongoURI, add a collection name of 'feedback-collection-db' after '.mongodb.net/' and before the '?retryWrites=true'
-17. Run the node project with `npm run dev`
+17. Go to dashboard.stripe.com and create an account. After, navigate to dashboard.stripe.com/account/apikeys and copy the publishable key and secret key to notepad. Add these values to both config files as stripePublishableKey and stripeSecretKey. For prod, have thir values be process.env.{STRIPE_SECRET_KEY or STRIPE_PUBLISHABLE_KEY, respectively}
+19. Run the node project with `npm run dev`
 
 ## Client (react app)
+
+1. run `npm install` while inside the client folder
+12. Update .env.development and .env.production with your own stripe publishable key values
