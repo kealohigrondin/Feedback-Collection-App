@@ -19,7 +19,8 @@ class Nav extends React.Component {
       default: //logged in
         return (
           <>
-            <Payments />
+            <span className="item">Credits: {this.props.auth.credits}</span>
+            <Payments/>
             <a href="/auth/logout" className="item">
               Sign Out
             </a>
