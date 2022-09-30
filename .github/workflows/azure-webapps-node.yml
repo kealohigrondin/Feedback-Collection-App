@@ -20,6 +20,8 @@
 on:
   push:
     branches: [ "master" ]
+    paths-ignore: 
+      - '/client/**'
   workflow_dispatch:
 
 env:
