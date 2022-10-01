@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '/client/**'
   workflow_dispatch:
 
 jobs:
@@ -23,6 +25,7 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+          cd ./client/
           npm install
           npm run build --if-present
           npm run test --if-present
@@ -31,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: ./client
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,4 +56,4 @@ jobs:
           app-name: 'feedbackcollectionclient'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4ACA8503075F44598FEBD537B90C1417 }}
-          package: .
+          package: ./client
