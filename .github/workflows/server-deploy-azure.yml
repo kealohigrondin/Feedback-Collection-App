@@ -20,9 +20,9 @@
 on:
   push:
     branches: [ "master" ]
-    paths-ignore: 
-      - '/client/**'
-      - '**/client-deploy-azure.yml'
+    paths: 
+      - '/server/**'
+      - '**/server-deploy-azure.yml'
   workflow_dispatch:
 
 env:
