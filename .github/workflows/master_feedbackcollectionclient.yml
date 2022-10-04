@@ -58,7 +58,9 @@ jobs:
           
       - name: unzip artifact for deployment
         run: |
+          cd client
           ls
+          
         
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
