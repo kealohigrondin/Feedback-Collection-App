@@ -36,12 +36,12 @@ jobs:
       
       - name: list directory
         run: |
-          ls
+          cd client/release.zip
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          path: client/release.zip # doesn't use working-directory variable listed above
+          path: client/ # doesn't use working-directory variable listed above
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          path: client/release.zip
+          path: client/release.zip/artifact
           
       - name: unzip artifact for deployment
         run: |
