@@ -50,18 +50,9 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-      - name: unzip artifact for deployment
-        run: |
-          file *
-          
+    steps:          
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          path: artifact
-          
-      
-          
+        uses: actions/download-artifact@v2      
         
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
