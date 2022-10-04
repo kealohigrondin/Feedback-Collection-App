@@ -36,7 +36,8 @@ jobs:
       
       - name: list directory
         run: |
-          cd client/release.zip
+          cd client
+          file *
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
