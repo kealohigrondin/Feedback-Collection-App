@@ -59,7 +59,7 @@ jobs:
       - name: unzip artifact for deployment
         run: |
           cd client
-          ls
+          file *
           
         
       - name: 'Deploy to Azure Web App'
