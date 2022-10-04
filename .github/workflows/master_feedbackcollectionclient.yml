@@ -57,7 +57,8 @@ jobs:
           path: client/release.zip
           
       - name: unzip artifact for deployment
-        run: unzip client/release.zip/artifact
+        run: |
+          ls
         
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
