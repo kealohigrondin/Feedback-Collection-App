@@ -53,7 +53,12 @@ jobs:
     steps:          
       - name: Download artifact from build job
         uses: actions/download-artifact@v2      
-        
+      
+      - name: Unzip artifact
+        run: |
+          file *
+          unzip artifact/release.zip
+      
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
