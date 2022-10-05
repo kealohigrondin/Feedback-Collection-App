@@ -36,8 +36,14 @@ jobs:
     - name: list directory, remove node_modules
       run: |
         file *
-        rm ./client/node_modules
-        rm ./node_nodules
+        rm node_modules
+        cd client
+        rm node_modules
+        rm src
+        rm public
+        file *
+        cd..
+        file *
         
     - name: Zip artifact for deployment
       run: zip release.zip ./* -r
