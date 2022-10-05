@@ -1,11 +1,16 @@
+// external dependencies
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+
+// internal dependencies
 const keys = require("./config/keys.js");
 require("./models/User");
+require("./models/Survey");
 require("./services/passport"); //doesn't need to be assigned to anything since the file isn't returning anything. Just need to attach it to this file for usage
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -30,7 +35,7 @@ require("./routes/authRoutes")(app);
 require("./routes/stripeRoutes")(app);
 
 /////In prod, serve the client also/////
-if ((process.env.NODE_ENV === "production")) {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   const path = require("path");
   //if we get a request for a route we don't know (in the express or client app), serve up index.html
