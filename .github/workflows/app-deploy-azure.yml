@@ -36,11 +36,11 @@ jobs:
     - name: list directory, remove node_modules
       run: |
         file *
-        rm node_modules
+        rmdir node_modules
         cd client
-        rm node_modules
-        rm src
-        rm public
+        rmdir node_modules
+        rmdir src
+        rmdir public
         file *
         cd..
         file *
