@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.use(
     ["/auth", "/api"],
     createProxyMiddleware({
-      target: process.env.SERVER_TARGET_URI,
+      target: "http://localhost:5000",
     })
   );
 };
