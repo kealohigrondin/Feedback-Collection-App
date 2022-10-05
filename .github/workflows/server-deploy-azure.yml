@@ -1,3 +1,5 @@
+name: Server & Client CI/CD -- PROD
+
 on:
   push:
     branches: [ "master" ]
