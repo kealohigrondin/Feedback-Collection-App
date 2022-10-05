@@ -33,8 +33,8 @@ jobs:
         npm run build --if-present
         npm run ci-postbuild
     
-    - name: Zip artifact for deployment
-      run: zip release.zip ./* -r
+#     - name: Zip artifact for deployment
+#       run: zip release.zip ./* -r
 
     - name: list directory
       run: |
@@ -43,7 +43,10 @@ jobs:
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
-        path: release.zip
+        path: |
+          *
+          ./client/build
+          !client
 
   deploy:
     permissions:
@@ -57,11 +60,14 @@ jobs:
     steps:
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
-
-    - name: Unzip artifact
+      
+    - name: list directory
       run: |
         file *
-        unzip artifact/release.zip
+#     - name: Unzip artifact
+#       run: |
+#         file *
+#         unzip artifact/release.zip
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 
