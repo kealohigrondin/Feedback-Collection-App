@@ -3,9 +3,6 @@ name: Server & Client CI/CD -- PROD
 on:
   push:
     branches: [ "master" ]
-    paths: 
-      - '/server/**'
-      - '**/server-deploy-azure.yml'
   workflow_dispatch:
 
 env:
@@ -63,8 +60,8 @@ jobs:
 
     - name: Unzip artifact
       run: |
-        file *
         unzip artifact/release.zip
+        file *
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 
