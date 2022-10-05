@@ -31,7 +31,7 @@ require("./routes/stripeRoutes")(app);
 
 /////In prod, serve the client also/////
 if ((process.env.NODE_ENV === "production")) {
-  app.use(express.static("/client/build"));
+  app.use(express.static("client/build"));
   const path = require("path");
   //if we get a request for a route we don't know (in the express or client app), serve up index.html
   app.get("*", (req, res) => {
