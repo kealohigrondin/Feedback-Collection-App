@@ -33,6 +33,7 @@ mongoose.connect(keys.mongoURI);
 /////Attach routes to express app/////
 require("./routes/authRoutes")(app);
 require("./routes/stripeRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 /////In prod, serve the client also/////
 if (process.env.NODE_ENV === "production") {
