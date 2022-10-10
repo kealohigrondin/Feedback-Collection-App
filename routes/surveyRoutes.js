@@ -3,7 +3,8 @@ const requireLogin = require("../middlewares/requireLogin");
 const requireCredits = require("../middlewares/requireCredits");
 
 const Survey = mongoose.model("surveys");
-const Recipient = mongoose.model("recipient");
+const Mailer = require("../services/Mailer");
+const surveyTemplate = require("../services/emailTemplates/surveyTemplates");
 
 module.exports = (app) => {
   /*
@@ -29,7 +30,10 @@ module.exports = (app) => {
       _user: req.user.id,
       dateSent: Date.now(),
     });
-    //create and send off email
+    //create and send off email (with params survey and template which represents the html body of the actual email)
+    const mailer = new Mailer(survey, surveyTemplate(survey.body));
     //successful email send? -> save survey
+    const sendRes = mailer.send();
+    console.log(sendRes);
   });
 };

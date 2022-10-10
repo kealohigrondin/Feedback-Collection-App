@@ -5,6 +5,6 @@ const recipientSchema = new Schema({
   email: String,
   responded: { type: Boolean, default: false },
 });
-mongoose.model("recipient", recipientSchema);
+// mongoose.model("recipient", recipientSchema);
 
 module.exports = recipientSchema;
