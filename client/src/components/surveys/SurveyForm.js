@@ -1,12 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Field, Form } from "react-final-form";
+
 import { updateFormState } from "../../actions";
+import SurveyField from "./SurveyField";
+
+const FIELDS = [
+  {
+    label: "Survey Title",
+    name: "surveyTitle",
+  },
+  {
+    label: "Subject Line",
+    name: "subjectLine",
+  },
+  {
+    label: "Email Body",
+    name: "emailBody",
+  },
+  {
+    label: "Recipient List",
+    name: "recipients",
+  },
+];
 
 class SurveyForm extends React.Component {
-  handleSubmit = async (values) => {
-    window.alert(JSON.stringify(values, 0, 2));
+  submitted = false;
+  handleSubmit = (values) => {
     this.props.updateFormState("surveyForm", values);
+    this.submitted = true;
   };
   render() {
     return (
@@ -15,18 +38,26 @@ class SurveyForm extends React.Component {
         render={({ handleSubmit, form, submitting, pristine }) => (
           <form className="ui form" onSubmit={handleSubmit}>
             <fieldset>
-              <div className="field">
-                <label>Survey Title</label>
+              {FIELDS.map(({ label, name }) => (
                 <Field
-                  component="input"
-                  name="surveyTitle"
+                  key={name}
+                  label={label}
                   type="text"
-                  placeholder="Enter title for survey"
+                  name={name}
+                  component={SurveyField}
                 />
-              </div>
+              ))}
+              <Link
+                to="/dashboard"
+                className="ui button basic red"
+                type="submit"
+              >
+                Cancel
+              </Link>
               <button className="ui button primary" type="submit">
                 Submit
               </button>
+              {this.submitted ? <p>Input received!</p> : null}
             </fieldset>
           </form>
         )}

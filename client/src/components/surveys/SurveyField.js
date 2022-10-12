@@ -1,8 +1,10 @@
 import React from "react";
 
-class SurveyField extends React.Component {
-    render() {
-      return <div>field</div>;
-    }
-  }
-  export default SurveyField;
+export default function SurveyField({ input, label }) {
+  return (
+    <div className="field">
+      <label>{label}</label>
+      <input {...input} placeholder={label} />
+    </div>
+  );
+}
