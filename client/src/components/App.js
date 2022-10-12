@@ -2,14 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Nav from "./Nav";
-import Welcome from "./Welcome";
-import Dashboard from "../components/Dashboard";
-// import SignUp from "../components/auth/SignUp";
-// import SignIn from "./auth/SignIn";
-// import SignOut from "./auth/SignOut";
-
 import { fetchUser } from "../actions";
+import Nav from "./Nav";
+import Welcome from "./pages/Welcome";
+import Dashboard from "./pages/Dashboard";
+import SurveyNew from "./pages/SurveyNew";
 
 class App extends React.Component {
   constructor(props) {
@@ -26,7 +23,7 @@ class App extends React.Component {
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* <Route path="/signup" element={<SignUp />} /> */}
+            <Route path="/surveys/new" element={<SurveyNew />} />
             {/* <Route path="/signin" element={<SignIn />} /> */}
             {/* <Route path="/signout" element={<SignOut />} /> */}
           </Routes>
