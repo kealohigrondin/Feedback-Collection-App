@@ -5,7 +5,7 @@ class SurveyNew extends React.Component {
   render() {
     return (
       <div>
-        hello
+        <h2>Send a Survey</h2>
         <SurveyForm />
       </div>
     );

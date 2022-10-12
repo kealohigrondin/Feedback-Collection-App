@@ -5,60 +5,68 @@ import { Field, Form } from "react-final-form";
 
 import { updateFormState } from "../../actions";
 import SurveyField from "./SurveyField";
+import { validateEmails } from "../../utils/validateEmails";
+
+const required = (value) => (value ? undefined : "Required");
 
 const FIELDS = [
   {
-    label: "Survey Title",
-    name: "surveyTitle",
-  },
-  {
     label: "Subject Line",
     name: "subjectLine",
+    validate: required,
+  },
+  {
+    label: "Recipient List (comma separated)",
+    name: "recipients",
+    validate: validateEmails,
+  },
+  {
+    label: "Survey Title",
+    name: "surveyTitle",
+    validate: required,
   },
   {
     label: "Email Body",
     name: "emailBody",
-  },
-  {
-    label: "Recipient List",
-    name: "recipients",
+    validate: required,
   },
 ];
 
 class SurveyForm extends React.Component {
   submitted = false;
+
   handleSubmit = (values) => {
     this.props.updateFormState("surveyForm", values);
     this.submitted = true;
   };
+
   render() {
     return (
       <Form
         onSubmit={this.handleSubmit}
         render={({ handleSubmit, form, submitting, pristine }) => (
-          <form className="ui form" onSubmit={handleSubmit}>
-            <fieldset>
-              {FIELDS.map(({ label, name }) => (
-                <Field
-                  key={name}
-                  label={label}
-                  type="text"
-                  name={name}
-                  component={SurveyField}
-                />
-              ))}
-              <Link
-                to="/dashboard"
-                className="ui button basic red"
-                type="submit"
-              >
-                Cancel
-              </Link>
-              <button className="ui button primary" type="submit">
-                Submit
-              </button>
-              {this.submitted ? <p>Input received!</p> : null}
-            </fieldset>
+          <form className="ui form error" onSubmit={handleSubmit}>
+            {FIELDS.map(({ label, name, validate }) => (
+              <Field
+                key={name}
+                label={label}
+                type="text"
+                name={name}
+                component={SurveyField}
+                validate={validate}
+              />
+            ))}
+            <Link to="/dashboard" className="ui button basic red">
+              Cancel
+            </Link>
+            <button
+              className="ui button primary"
+              type="submit"
+              disabled={submitting}
+            >
+              Submit
+            </button>
+            {this.submitted ? <p>Input received!</p> : null}
           </form>
         )}
       ></Form>
