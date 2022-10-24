@@ -12,10 +12,26 @@ export const handleToken = (token) => async (dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const updateFormState = (form, state) => (dispatch) => {
-  dispatch({
+export const updateFormState = (form, state) => {
+  return {
     type: UPDATE_FORM_STATE,
     payload: state,
     form,
-  });
+  };
+};
+
+/**
+ *
+ * @param {Object{}} formValues object containing a survey form's values like
+ * subjectLine:"hello from gmail"
+ * recipients:"haynbaseball14@yahoo.com"
+ * surveyTitle:"Title of my survey"
+ * emailBody:"body of the email"
+ * @returns
+ */
+export const submitSurvey = (formValues) => async (dispatch) => {
+  console.log("submitting survey", formValues);
+  const res = await axios.post("/api/surveys", formValues);
+  console.log(res);
+  dispatch({ type: FETCH_USER, payload: res.data }); //user with new # of credits is returned
 };

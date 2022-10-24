@@ -14,7 +14,7 @@ import {
 const FIELDS = [
   {
     label: "Subject Line",
-    name: "subjectLine",
+    name: "subject",
     validate: required,
   },
   {
@@ -24,12 +24,12 @@ const FIELDS = [
   },
   {
     label: "Survey Title",
-    name: "surveyTitle",
+    name: "title",
     validate: required,
   },
   {
     label: "Email Body",
-    name: "emailBody",
+    name: "body",
     validate: required,
   },
 ];
@@ -49,6 +49,7 @@ class SurveyForm extends React.Component {
         <h2>Send a Survey</h2>
         <Form
           onSubmit={this.handleFormSubmit}
+          initialValues={this.props.form}
           render={({ handleSubmit, form, submitting, pristine }) => (
             <form className="ui form error" onSubmit={handleSubmit}>
               {FIELDS.map(({ label, name, validate }) => (
@@ -79,4 +80,8 @@ class SurveyForm extends React.Component {
     );
   }
 }
-export default connect(null, { updateFormState })(SurveyForm);
+
+const mapStateToProps = (state) => {
+  return { form: state.form?.surveyForm };
+};
+export default connect(mapStateToProps, { updateFormState })(SurveyForm);
