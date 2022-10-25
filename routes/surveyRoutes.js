@@ -21,7 +21,7 @@ module.exports = (app) => {
   });
 
   /**
-   * should update something
+   * should update survey with new response received
    */
   app.post("/api/surveys/webhook", (req, res) => {
     console.log("Webhook hit");
@@ -94,5 +94,12 @@ module.exports = (app) => {
       //unprocessable entity (user did something wrong)
       res.status(422).send(err);
     }
+  });
+
+  app.get("/api/surveys", requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id }).select({
+      recipients: false,
+    }); //.select receipients false removes recipients from the returned list of resulting surveys
+    res.send({ surveys });
   });
 };

@@ -1,3 +1,3 @@
 export const FETCH_USER = "FETCH_USER";
 export const UPDATE_FORM_STATE = "UPDATE_FORM_STATE";
-export const SUBMIT_SURVEY = "SUBMIT_SURVEY";
+export const FETCH_SURVEYS = "FETCH_SURVEYS";
