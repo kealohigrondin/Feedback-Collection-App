@@ -102,4 +102,20 @@ module.exports = (app) => {
     }); //.select receipients false removes recipients from the returned list of resulting surveys
     res.send({ surveys });
   });
+
+  app.delete("/api/surveys", requireLogin, async (req, res) => {
+    console.log("req body", req.body);
+    //delete survey
+    const { acknowledged, deletedCount } = await Survey.deleteOne({
+      _id: req.body.surveyId,
+      _user: req.user.id,
+    });
+    if (!(deletedCount > 0 && acknowledged)) {
+      res.status(418);
+    }
+    const surveys = await Survey.find({ _user: req.user.id }).select({
+      recipients: false,
+    }); //.select receipients false removes recipients from the returned list of resulting surveys
+    res.send({ surveys });
+  });
 };
