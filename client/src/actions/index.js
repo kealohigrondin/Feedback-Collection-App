@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, UPDATE_FORM_STATE } from "./types";
+import { FETCH_USER, UPDATE_FORM_STATE, FETCH_SURVEYS } from "./types";
 
 export const fetchUser = () => async (dispatch) => {
   const res = await axios.get("/auth/current_user");
@@ -8,7 +8,6 @@ export const fetchUser = () => async (dispatch) => {
 
 export const handleToken = (token) => async (dispatch) => {
   const res = await axios.post("/api/stripe", token);
-  console.log(res);
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
@@ -30,8 +29,11 @@ export const updateFormState = (form, state) => {
  * @returns
  */
 export const submitSurvey = (formValues) => async (dispatch) => {
-  console.log("submitting survey", formValues);
   const res = await axios.post("/api/surveys", formValues);
-  console.log(res);
   dispatch({ type: FETCH_USER, payload: res.data }); //user with new # of credits is returned
+};
+
+export const fetchSurveys = () => async (dispatch) => {
+  const res = await axios.get("api/surveys");
+  dispatch({ type: FETCH_SURVEYS, payload: res.data });
 };
