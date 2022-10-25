@@ -8,6 +8,9 @@ class SurveyList extends React.Component {
   }
 
   renderSurveys() {
+    if (!this.props.surveys) {
+      return <p>No Active Surveys</p>;
+    }
     return this.props.surveys.map((survey) => {
       return (
         <div className="ui raised card" key={survey.title}>
