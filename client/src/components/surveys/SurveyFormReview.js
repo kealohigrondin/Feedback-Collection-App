@@ -3,13 +3,20 @@ import { connect } from "react-redux";
 import { submitSurvey } from "../../actions/index";
 
 class SurveyFormReview extends React.Component {
-  sent = false;
+  state = { sent: false };
 
   sendSurvey = () => {
     this.props.submitSurvey(this.props.surveyForm);
-    this.sent = true;
+    this.setState({ sent: true });
+    console.log("updating sent var to ", this.state.sent);
   };
 
+  renderSentMessage = () => {
+    console.log("reading sent as", this.state.sent);
+    if (this.state.sent) {
+      return <p>Sent!</p>;
+    }
+  };
   render() {
     return (
       <div className="ui segment">
@@ -31,7 +38,7 @@ class SurveyFormReview extends React.Component {
         >
           Send Survey
         </button>
-        {this.sent && this.props.onFormSubmit()}
+        {this.renderSentMessage()}
       </div>
     );
   }

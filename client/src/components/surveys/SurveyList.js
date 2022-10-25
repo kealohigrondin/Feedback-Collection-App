@@ -11,7 +11,7 @@ class SurveyList extends React.Component {
     if (!this.props.surveys) {
       return <p>No Active Surveys</p>;
     }
-    return this.props.surveys.map((survey) => {
+    return this.props.surveys.reverse().map((survey) => {
       return (
         <div className="ui raised card" key={survey.title}>
           <div className="content">
@@ -36,7 +36,7 @@ class SurveyList extends React.Component {
     return (
       <div>
         <h2>Currently Running Campaigns</h2>
-        <div className="ui two cards">{this.renderSurveys()}</div>
+        <div className="ui two stackable cards">{this.renderSurveys()}</div>
       </div>
     );
   }

@@ -12,7 +12,6 @@ class SurveyNew extends React.Component {
   render() {
     return (
       <>
-        <span>SurveyNew page</span>
         {this.state.showFormReview ? (
           <SurveyFormReview
             onCancel={() => this.setState({ showFormReview: false })}
