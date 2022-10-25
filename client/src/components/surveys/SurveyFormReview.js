@@ -8,11 +8,9 @@ class SurveyFormReview extends React.Component {
   sendSurvey = () => {
     this.props.submitSurvey(this.props.surveyForm);
     this.setState({ sent: true });
-    console.log("updating sent var to ", this.state.sent);
   };
 
   renderSentMessage = () => {
-    console.log("reading sent as", this.state.sent);
     if (this.state.sent) {
       return <p>Sent!</p>;
     }
