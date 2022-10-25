@@ -7,10 +7,9 @@ class Dashboard extends React.Component {
     return (
       <div>
         <h1>Dashboard </h1>
-        <p>(user is logged in at this point)</p>
         <p>
           When adding credits use 4242 4242 4242 4242 and any date/ccv since
-          this is doesn't accept real payments
+          this doesn't accept real payments
         </p>
         <SurveyList />
         <br />
