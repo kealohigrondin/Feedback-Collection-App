@@ -29,7 +29,7 @@ export default function Welcome() {
           </a>
         </div>
       </div>
-      <div className="ui segment">
+      <div className="ui segment" id="learnings">
         <h3>What did I learn?</h3>
         <div>
           <ul>
@@ -69,7 +69,7 @@ export default function Welcome() {
           </ul>
         </div>
       </div>
-      <div className="ui segment">
+      <div className="ui segment" id="whoAmI">
         <h3>Who made this?</h3>
         <div>
           <p>Kealohi Grondin is the author of this site.</p>
@@ -87,7 +87,7 @@ export default function Welcome() {
           <p>P.S. He's also looking for a job</p>
         </div>
       </div>
-      <div className="ui segment">
+      <div className="ui segment" id="techStack">
         <h3>What technologies were used?</h3>
         <div className="ui stackable three column grid">
           <div className="column">
@@ -101,6 +101,7 @@ export default function Welcome() {
               <li>react-stripe-checkout</li>
               <li>redux</li>
               <li>redux-thunk</li>
+              <li>semantic-ui for styling</li>
             </ul>
           </div>
           <div className="column">
