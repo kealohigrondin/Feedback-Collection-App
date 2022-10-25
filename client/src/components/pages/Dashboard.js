@@ -8,8 +8,8 @@ class Dashboard extends React.Component {
       <div>
         <h1>Dashboard </h1>
         <p>
-          When adding credits use 4242 4242 4242 4242 and any date/ccv since
-          this doesn't accept real payments
+          When adding credits use "4242 4242 4242 4242" and any date/ccv/email since
+          this doesn't accept real payments. No email will be sent so it can be a dummy email
         </p>
         <SurveyList />
         <br />
@@ -17,6 +17,7 @@ class Dashboard extends React.Component {
           to="/surveys/new"
           className="circular ui icon button red right floated"
         >
+          <span style={{ paddingRight: "0.5em" }}>Create Survey</span>
           <i className="icon plus" />
         </Link>
       </div>

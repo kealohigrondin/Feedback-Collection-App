@@ -2,6 +2,7 @@ export default function Welcome() {
   return (
     <>
       <h1>Welcome to the Feedback Collection App</h1>
+      <h5 className="ui red header">**WARNING: THIS IS A WORK IN PROGRESS, BUGS MAY BE PRESENT**</h5>
       <div className="ui segment">
         <h3>What is this?</h3>
         <div>

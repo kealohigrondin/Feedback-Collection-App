@@ -36,7 +36,7 @@ class SurveyList extends React.Component {
     return (
       <div>
         <h2>Currently Running Campaigns</h2>
-        <div className="ui two cards">{this.renderSurveys()}</div>
+        <div className="ui two stackable cards">{this.renderSurveys()}</div>
       </div>
     );
   }
